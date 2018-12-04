@@ -14,10 +14,8 @@ class SongsController < ApplicationController
 
   def create
     genre = Genre.find_by(id: params[:song][:genre_id])
-    artist = Artist.find_or_create_by(name: params[:song][:artist_name])
     @song = Song.new(song_params)
     @song.genre_name = genre.name
-    @song.artist_name = params[:song][:artist_name]
     if @song.save
       redirect_to @song
     else
